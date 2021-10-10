@@ -15,8 +15,11 @@ func main() {
     log.SetPrefix("greetings: ")
     log.SetFlags(0)
 
-    // Request a greeting message.
-    message, err := greetings.Hello("ioio")
+    // A slice of names.
+    names := []string{"Gladys", "Samantha", "Darrin"}
+
+    // Request greeting messages for the names.
+    message, err := greetings.Hellos(names)
     // If an error was returned, print it to the console and
     // exit the program.
     if err != nil {
@@ -27,3 +30,9 @@ func main() {
     // to the console.
     fmt.Println(message)
 }
+
+/*
+go build: compiles the packages, along with their dependencies, but it doesn't install the results.
+
+go
+*/
