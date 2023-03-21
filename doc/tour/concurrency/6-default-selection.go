@@ -10,13 +10,14 @@ func main() {
 	boom := time.After(500 * time.Millisecond)
 	for {
 		select {
-		case <-tick:
-			fmt.Println("tick,")
+		case a := <-tick:
+			fmt.Println("tick.")
+			fmt.Println(a)
 		case <-boom:
-			fmt.Println("BOOM!")
+			fmt.Println("BOOM")
 			return
 		default:
-			fmt.Println("        .")
+			fmt.Println("    .")
 			time.Sleep(50 * time.Millisecond)
 		}
 	}
