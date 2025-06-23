@@ -1,0 +1,44 @@
+basePath: /api/v1
+host: 127.0.0.1:8000
+info:
+  contact: {}
+  description: 这是我的API文档
+  title: MyGin文档
+  version: "1.0"
+paths:
+  /getIndex:
+    get:
+      description: 获取首页数据
+      parameters:
+      - description: 关键词
+        in: query
+        name: q
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: 首页的GET接口
+  /postIndex:
+    post:
+      description: 获取首页数据
+      parameters:
+      - description: 请求参数
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: 首页的POST接口
+schemes:
+- http
+- https
+swagger: "2.0"

@@ -1,0 +1,13 @@
+<html>
+    <div>单文件上传</div>
+	<form action="/upload/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="单文件上传">
+	</form>
+
+	<div>多文件上传</div>
+	<form action="/uploads/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" multiple>
+        <input type="submit" value="多文件上传">
+    </form>
+</html>

@@ -1,0 +1,46 @@
+version: "3.8"
+
+networks: # 自定义网络(默认桥接)
+  my_network:
+    driver: bridge
+
+services:
+  db:
+    # 拉取最新的mysql镜像
+    image: mysql:latest
+    # 设置端口
+    ports:
+       - "3306:3306"
+    environment:
+       # 数据库密码
+       - MYSQL_ROOT_PASSWORD=QAZwsx1234!
+       # 数据库名称
+       - MYSQL_DATABASE=babys
+    # 设置挂载目录
+    volumes:
+       - /home/servers/mysql/conf:/etc/mysql/conf.d # 挂载配置文件
+       - /home/servers/mysql/data:/var/lib/mysql
+       - /home/servers/mysql/init:/docker-entrypoint-initdb.d/
+    # 容器运行发生错误时一直重启
+    restart: always
+    # 设置网络
+    networks:
+      - my_network
+    
+  web:
+    # 通过同目录下的Dockerfile构建镜像
+    build: ./
+    # 容器启动后执行Gin编译文件
+    command: /home/servers/gin/main
+    # 设置端口
+    ports:
+        - "8000:8000"
+    volumes:
+        - /home/servers/gin:/home/servers/gin
+    # 容器运行发生错误时一直重启
+    restart: always
+    # 设置网络
+    networks:
+        - my_network
+    depends_on:
+        - db
